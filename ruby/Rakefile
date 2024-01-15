@@ -99,7 +99,7 @@ namespace :build do
         mv dest_fn + ".out", dest_fn
       end
     end
-  end if File.exists?("../c")
+  end if File.exist?("../c")
 
   file 'ext/internal.h' => '../c/include/internal.h' do
     File.open('ext/internal.h', 'w') do |f|
@@ -120,9 +120,9 @@ namespace :build do
         sh "nmake"
       rescue Exception => e
         path = ':\Program Files\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT'
-        if File.exists? "f#{path}"
+        if File.exist? "f#{path}"
           sh "f#{path}"
-        elsif File.exists? "c#{path}"
+        elsif File.exist? "c#{path}"
           sh "c#{path}"
         else
           say
@@ -264,9 +264,9 @@ spec = Gem::Specification.new do |s|
     'TUTORIAL' << 'TODO'
 
   key_file = File.expand_path('~/.gem/gem-private_key.pem')
-  key_file = nil unless File.exists?(key_file)
+  key_file = nil unless File.exist?(key_file)
   cert_file = File.expand_path('~/.gem/gem-public_cert.pem')
-  cert_file = nil unless File.exists?(cert_file)
+  cert_file = nil unless File.exist?(cert_file)
   if key_file and cert_file
     s.signing_key = key_file
     s.cert_chain  = cert_file
